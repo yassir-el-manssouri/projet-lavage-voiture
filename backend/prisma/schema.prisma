@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  role      String    @default("CLIENT") // CLIENT, AGENT, MANAGER
+  points    Int       @default(0)
+  vehicles  Vehicle[]
+  reservationsAsClient Reservation[] @relation("ClientReservations")
+  reservationsAsAgent  Reservation[] @relation("AgentReservations")
+  createdAt DateTime  @default(now())
+}
+
+model Vehicle {
+  id        Int      @id @default(autoincrement())
+  brand     String
+  model     String
+  plate     String   @unique
+  color     String?
+  ownerId   Int
+  owner     User     @relation(fields: [ownerId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Reservation {
+  id        String   @id @default(uuid())
+  clientId  Int
+  client    User     @relation("ClientReservations", fields: [clientId], references: [id])
+  agentId   Int?
+  agent     User?    @relation("AgentReservations", fields: [agentId], references: [id])
+  vehicle   String
+  service   String
+  date      String
+  time      String
+  status    String   @default("waiting") // waiting, in_progress, done, cancelled
+  price     Int
+  rating    Int?
+  comment   String?
+  photoBefore String?
+  photoAfter  String?
+  paymentMethod String? // CASH, CARD, ONLINE
+  step      Int      @default(0) // 0: WAITING, 1: WASHING, 2: DRYING, 3: FINISHING, 4: DONE
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  features    String?  // Comma separated list
+  price       Int
+  duration    String
+  icon        String   @default("🚿")
+  color       String   @default("from-blue-400 to-blue-600")
+  popular     Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}

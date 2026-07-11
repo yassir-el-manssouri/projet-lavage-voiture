@@ -1,0 +1,13 @@
+{
+  "name": "autobrillance-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install": "cd frontend && npm install"
+  },
+  "dependencies": {
+    "socket.io": "^4.8.3"
+  }
+}

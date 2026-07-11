@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2E4057;
+  --color-secondary: #1A6FC4;
+  --color-accent: #F4A261;
+  --color-background: #F9FAFB;
+  
+  --font-sans: 'Inter', 'Roboto', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+}
+
+/* Animations et utilitaires premium */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.transition-smhtml {
+  scroll-behavior: smooth;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Print Styles pour Factures */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .invoice-print-only, .invoice-print-only * {
+    visibility: visible;
+  }
+  .invoice-print-only {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  @page {
+    margin: 0.5cm;
+  }
+}
+
+@media screen {
+  .invoice-print-only {
+    display: none !important;
+  }
+}
