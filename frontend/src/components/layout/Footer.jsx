@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const members = ['Anass Benbassou', 'Yassir El Manssouri', 'Rokaya El Bekkari', 'Ahmed Aidani'];
-
   return (
     <footer className="bg-[#2E4057] text-white pt-16 pb-8 border-t border-[#1a2d40]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,13 +73,6 @@ const Footer = () => {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <p className="text-slate-400">© 2026 AutoBrillance · Tous droits réservés · EMSI Rabat</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            {members.map(name => (
-              <span key={name} className="text-slate-400 font-medium">
-                {name}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </footer>
