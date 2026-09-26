@@ -44,4 +44,8 @@ npm run dev
 - **Base de données** : SQLite (dev) / PostgreSQL (prod)
 - **Temps réel** : Socket.io
 - **Auth** : JWT
+---
 
+## 👤 Auteur
+
+- **Yassir EL MANSSOURI** - [@yassir-el-manssouri](https://github.com/yassir-el-manssouri) | [LinkedIn](https://www.linkedin.com/in/yassir-el-manssouri/)
